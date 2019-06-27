@@ -23,31 +23,31 @@ const frameIn = [
       },
       // 演示页面
       {
-        path: 'page1',
-        name: 'page1',
+        path: 'CheckPoint',
+        name: 'CheckPoint',
         meta: {
-          title: '页面 1',
+          title: '核查点管理',
           auth: true
         },
-        component: _import('demo/page1')
+        component: _import('supervise/CheckPoint')
       },
       {
-        path: 'page2',
-        name: 'page2',
+        path: 'CheckTask',
+        name: 'CheckTask',
         meta: {
-          title: '页面 2',
+          title: '核查任务',
           auth: true
         },
-        component: _import('demo/page2')
+        component: _import('supervise/CheckTask')
       },
       {
-        path: 'page3',
-        name: 'page3',
+        path: 'BookData',
+        name: 'BookData',
         meta: {
-          title: '页面 3',
+          title: '台账数据管理',
           auth: true
         },
-        component: _import('demo/page3')
+        component: _import('supervise/BookData')
       },
       // 系统 前端日志
       {

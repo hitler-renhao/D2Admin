@@ -1,11 +1,11 @@
 <template>
-  <div
+  <!-- <div
     v-if="show"
     class="d2-source"
     :class="{ 'd2-source--active': isActive }"
     @click="handleClick">
     <d2-icon name="code"/> 本页源码
-  </div>
+  </div> -->
 </template>
 
 <script>

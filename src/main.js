@@ -14,8 +14,19 @@ import menuHeader from '@/menu/header'
 import menuAside from '@/menu/aside'
 import { frameInRoutes } from '@/router/routes'
 
+// [ 可选组件 ] 网格布局
+import { GridLayout, GridItem } from 'vue-grid-layout'
+
+// [ 可选组件 ] 图表
+import echarts from 'echarts'
+
 // 核心插件
 Vue.use(d2Admin)
+// 图表
+Vue.prototype.$echarts = echarts // 全局使用echarts
+// 布局插件
+Vue.component('d2-grid-layout', GridLayout)
+Vue.component('d2-grid-item', GridItem)
 
 new Vue({
   router,

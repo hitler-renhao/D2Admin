@@ -9,7 +9,9 @@ module.exports = {
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
+    "indent": ["off", 2]
   },
   parserOptions: {
     parser: 'babel-eslint'
