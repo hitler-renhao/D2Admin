@@ -47,7 +47,8 @@
             </el-link>
           </el-table-column>
           <el-table-column label="历史编号" width="80" align="center">
-            <el-link type="primary" slot-scope="scope" @click="billDetail(scope.$index, scope.row)">{{ scope.row.hisNum }}</el-link>
+            <el-link type="primary" slot-scope="scope" @click="billDetail(scope.$index, scope.row)">
+              {{ scope.row.hisNum }}</el-link>
           </el-table-column>
           <el-table-column prop="lon" label="经度" width="120" align="center">
           </el-table-column>
@@ -310,15 +311,21 @@
           </p>
           <div class="w50 h1 imgs">
             <div class="el-input-group__prepend">整 改 前 照 片</div>
-            <img :src="billDetails.dealStatus.beforeAmendPic" alt="">
+            <!-- <img :src="billDetails.dealStatus.beforeAmendPic" alt=""> -->
+            <img :src="billDetails.dealStatus.beforeAmendPic" :key="billDetails.dealStatus.beforeAmendPic" preview="1"
+              preview-text="整 改 前 照 片">
           </div>
           <div class="w50 h1 imgs">
             <div class="el-input-group__prepend">整 改 后 照 片</div>
-            <img :src="billDetails.dealStatus.afterAmendPic" alt="">
+            <!-- <img :src="billDetails.dealStatus.afterAmendPic" alt=""> -->
+            <img :src="billDetails.dealStatus.afterAmendPic" :key="billDetails.dealStatus.afterAmendPic" preview="1"
+              preview-text="整 改 后 照 片">
           </div>
           <div class="w50 h1 imgs">
             <div class="el-input-group__prepend">整 改 进 展 照 片</div>
-            <img :src="billDetails.dealStatus.stepAmendPic" alt="">
+            <!-- <img :src="billDetails.dealStatus.stepAmendPic" alt=""> -->
+            <img :src="billDetails.dealStatus.stepAmendPic" :key="billDetails.dealStatus.stepAmendPic" preview="1"
+              preview-text="整 改 进 展 照 片">
           </div>
         </div>
         <div class="checkInfo">
@@ -442,7 +449,10 @@
 </template>
 
 <script>
-/* eslint-disable */
+  /* eslint-disable */
+  import {
+    AccountLogin1
+  } from '@/api/'
   export default {
     name: 'CheckPoint',
     data() {
@@ -552,22 +562,22 @@
           basicInfo: {
             prodName: '', // 保护区名称
             belongArea: '', // 所属功能分区
-            lon: '',  // 经度
-            lat: '',  // 纬度
-            acreage: '',  // 面积
-            placeDescribe: '',   // 所在位置描述
-            activeName: '',   // 活动设施名称
-            activeState: '',  // 活动设施现状
-            changeType: '',   // 变化类型
-            quesType: '',   // 问题类型
-            buildTime: '',    // 建设时间
-            buildUnit: '',    // 建设单位
-            quesDescribe: ''    // 问题描述
+            lon: '', // 经度
+            lat: '', // 纬度
+            acreage: '', // 面积
+            placeDescribe: '', // 所在位置描述
+            activeName: '', // 活动设施名称
+            activeState: '', // 活动设施现状
+            changeType: '', // 变化类型
+            quesType: '', // 问题类型
+            buildTime: '', // 建设时间
+            buildUnit: '', // 建设单位
+            quesDescribe: '' // 问题描述
           },
           /* 违规与手续情况 */
           procdescribe: {
             breakLow: '', // 是否违法违规
-            quesAndEffect: '',  // 存在问题及主要生态影响
+            quesAndEffect: '', // 存在问题及主要生态影响
             hasDevelopment: '', // 有无发改部门相关手续
             developmentNum: '', // 发改部门相关手续批复及验收文号
             hasProject: '', // 有无规划和自然资源部门相关规划,国土,林业等手续
@@ -576,57 +586,57 @@
             farmingNum: '', // 农业农村部门相关养殖等手续批复及验收文号
             hasCulture: '', // 有无文化和旅游部门相关旅游手续
             cultureNum: '', // 文化和旅游部门相关旅游手续批复及验收文号
-            hasMarket: '',  // 有无市场监督管理部门相关工商营业执照手续
-            marketNum: '',  // 市场监督管理部门相关工商营业执照手续批复及验收文号
+            hasMarket: '', // 有无市场监督管理部门相关工商营业执照手续
+            marketNum: '', // 市场监督管理部门相关工商营业执照手续批复及验收文号
             hasFinance: '', // 有无财政部门相关资金手续
-            fianceNum: '',  // 财政部门相关资金手续批复及验收文号
-            hasEvironment: '',  // 有无环评手续
-            evironmentNum: '',  // 环评手续批复及验收文号
-            hasOthers: '',  // 有无其他相关审批手续或行政许可手续批复及验收文号
-            othProcedure: ''  // 其他相关审批手续或行政许可手续
+            fianceNum: '', // 财政部门相关资金手续批复及验收文号
+            hasEvironment: '', // 有无环评手续
+            evironmentNum: '', // 环评手续批复及验收文号
+            hasOthers: '', // 有无其他相关审批手续或行政许可手续批复及验收文号
+            othProcedure: '' // 其他相关审批手续或行政许可手续
           },
           /* 处理与整改情况 */
           dealStatus: {
             fine: '', // 是否罚款
             punishType: '', // 处罚方式
-            penalty: '',  // 罚款
+            penalty: '', // 罚款
             amendMeasure: '', // 整改措施
-            amendTime: '',  // 整改时限
-            amendStep: '',  // 整改进度
+            amendTime: '', // 整改时限
+            amendStep: '', // 整改进度
             amendState: '', // 整改状态
-            disArea: '',  // 拆除建筑面积
-            disposeStatus: '',  // 处理情况
+            disArea: '', // 拆除建筑面积
+            disposeStatus: '', // 处理情况
             logout: '', // 是否销号
             beforeAmendPic: '/image/theme/star/bg.jpg', // 整改前照片
-            afterAmendPic: '/image/theme/star/bg.jpg',  // 整改后照片
-            stepAmendPic: '/image/theme/star/bg.jpg'  // 整改进展照片
+            afterAmendPic: '/image/theme/star/bg.jpg', // 整改后照片
+            stepAmendPic: '/image/theme/star/bg.jpg' // 整改进展照片
           },
           /* 核查人信息 */
           checkInfo: {
             checkPointName: '', // 核查点名称
-            checkUnit: '',  // 核查单位
-            checkTime: '',  // 核查时间
-            checkPerson: '',  // 核查人
+            checkUnit: '', // 核查单位
+            checkTime: '', // 核查时间
+            checkPerson: '', // 核查人
             contactWay: '', // 联系方式
             joinNumber: '', // 参与核查人数
             preparer: '', // 填表人
             verifier: '', // 审核人
-            remark: ''  // 备注
+            remark: '' // 备注
           },
           /* 问责情况 */
           accoStatus: {
-            dutyFormAuditor: '',  // 追责问责情况表审核人
+            dutyFormAuditor: '', // 追责问责情况表审核人
             dutyFormPreparer: '', // 追责问责情况表填写人
-            dutyFormConcatWay: '',  // 追责问责情况表联系方式
+            dutyFormConcatWay: '', // 追责问责情况表联系方式
             proDutyNum: '', // 省级追责问责人数
-            officeDutyNum: '',  // 厅级追责问责人数
-            countyDutyNum: '',  // 县级追责问责人数
+            officeDutyNum: '', // 厅级追责问责人数
+            countyDutyNum: '', // 县级追责问责人数
             subjectDutyNum: '', // 科级追责问责人数
             otherDutyNum: '', // 其他追责问责人数
-            partyIllegalNum: '',  // 党政违纪处分人数
-            warnPersonNum: '',  // 诫勉谈话人数
+            partyIllegalNum: '', // 党政违纪处分人数
+            warnPersonNum: '', // 诫勉谈话人数
             criticialNum: '', // 通报批评人数
-            dutyFormRemark: ''  // 追责问责情况表备注
+            dutyFormRemark: '' // 追责问责情况表备注
           }
         }
 
@@ -659,7 +669,22 @@
 
       // 搜索
       onSubmit() {
-        console.log(JSON.parse(JSON.stringify(this.submitForm)));
+        console.log(AccountLogin1);
+        
+        // console.log(JSON.parse(JSON.stringify(this.submitForm)));
+        this.http.post(AccountLogin1, {
+            userName: '18310215054',
+            userPwd: '111111'
+          })
+          .then(res => {
+            if (res.data.code == 200) {
+              localStorage.setItem('tokenKey', res.data.data.token)
+              localStorage.setItem('merchantId', res.data.data.merchantId)
+              this.$router.push({path: '/Home'})
+            } else {
+              this.$message.error(res.data.message);
+            }
+          })
       },
 
 

@@ -20,6 +20,9 @@ import { GridLayout, GridItem } from 'vue-grid-layout'
 // [ 可选组件 ] 图表
 import echarts from 'echarts'
 
+// axios实例化后引入取名http
+import http from './request/http.js'
+
 // 核心插件
 Vue.use(d2Admin)
 // 图表
@@ -27,6 +30,8 @@ Vue.prototype.$echarts = echarts // 全局使用echarts
 // 布局插件
 Vue.component('d2-grid-layout', GridLayout)
 Vue.component('d2-grid-item', GridItem)
+
+Vue.prototype.http = http // 放入全局
 
 new Vue({
   router,
